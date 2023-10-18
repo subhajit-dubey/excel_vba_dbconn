@@ -10,7 +10,7 @@ This scripts in the README file are lift and shift codes which can be directly p
 - OfficeSetup.exe*
 
 > [!NOTE]
-> *It is recently observed that the MS Office pack does not come loaded with the required libraries (DLLs). It was installed separately using the executable file [`OfficeSetup.exe`](https://c2rsetup.officeapps.live.com/c2r/download.aspx?ProductreleaseID=AccessRuntimeRetail&language=en-us&platform=x64)
+> *It is recently observed that the MS Office pack does not come loaded with the required libraries (DLLs). It was installed separately using the executable file [`OfficeSetup.exe (64 bit)`](https://c2rsetup.officeapps.live.com/c2r/download.aspx?ProductreleaseID=AccessRuntimeRetail&language=en-us&platform=x64)
 
 > [!IMPORTANT]
 > OS Architecture (32 bit \ 64 bit) plays an important role in installation of both MS pack and the DLLs and you will need a MS Account to download.
