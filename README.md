@@ -1,8 +1,19 @@
-# excel_vba_dbconn
+# SQL on Excel Data using VBA (dbConn) Wiki!
 
 This scripts in the README file are lift and shift codes which can be directly pasted in the `Visual Basic Editor of MS Excel`. This script will help in filtering the summarizing the data by treating it as a SQL database and hence, SQL queries can be used upon the Excel data.
 
 `SQL queries` are more user friendly as compared to front-end Excel filtering coded in VBA.
+
+## Pre-requisites
+
+- MS Excel
+- OfficeSetup.exe*
+
+<font color='aqua'>* It is recently observed that the MS Office pack does not come loaded with the required libraries (DLLs). It was installed separately using the executable file [`OfficeSetup.exe`](https://c2rsetup.officeapps.live.com)<br>
+OS Architecture (32 bit \ 64 bit) plays an important role in installation of both MS pack and the DLLs.
+</font>
+
+## Code Setup
 
 <b><i>Step 1:</b></i> From `Tools` -> `References`, add `Microsoft ActiveX Data Objects X.X Library` and `Microsoft ActiveX Data Objects Recordset X.X Library`, latest versions
 
@@ -13,7 +24,7 @@ This scripts in the README file are lift and shift codes which can be directly p
 
 <code>
 
-    Options Explicit
+    Option Explicit
     Dim fcount As Long, rcount As Long
     Private cn As ADODB.Connection, rs As ADODB.Recordset
 
@@ -33,8 +44,8 @@ This scripts in the README file are lift and shift codes which can be directly p
         Set cn = New ADODB.Connection
         Set rs = New ADODB.Recordset
         
-        cn.Open "Provider=Microsoft.ACE.OLEDB.12.0;" & dbPath & ";" & _
-        "Extended Properties=""Excel 12.0 Macro;" & "HDR=YES"";"
+        cn.Open "Provider=Microsoft.ACE.OLEDB.16.0;Data Source=" & dbPath & ";" & _
+        "Extended Properties=""Excel 12.0 Macro;" & "HDR=YES;"";"
     End Sub
 
     Private Sub CloseConnection()
@@ -101,25 +112,30 @@ This scripts in the README file are lift and shift codes which can be directly p
 
 </code>
 
+<font color='aqua'>Note that the `Provider=...` connection string can change with the change in MS Office version. The current setting is compatible with MS Office 365</font>
+
 <b><i>Step 4:</b></i> In the `Module`, along with other functions add the below code with SQL queries to be called from the front-end
 
 <code>
 
-    Sub test()
+    Sub test2()
 
     Dim cn As dbConn
     Dim ArrRaw As Variant
     Dim strSql As String
 
-    strSql = "Select * from [Sheet1$] where ..."
-    Set cn = New dbCon
+    strSql = "Select Col1, sum(Col2), sum(Col3) from [Sheet1$] where Col1 = 'Group2' and Col2 > 40 group by Col1"
+
+    Set cn = New dbConn
     ArrRaw = cn.GetRecords(strSql)
 
     'For pasting the values
-    Sheet2.Range("A2").Resize(UBound(ArrRaw, 1) + 1, UBound(ArrRaw, 2) + 1) = ArrRaw
+    Worksheets("Sheet3").Range("A2").Resize(UBound(ArrRaw, 1) + 1, UBound(ArrRaw, 2) + 1) = ArrRaw
 
     End Sub
 
-
 </code>
 
+## Sample Workbook
+
+A sample workbook `sample_data.xlsm` is provided utilizing the above scripts to achive the SQL functionalities within Excel
