@@ -9,9 +9,9 @@ This scripts in the README file are lift and shift codes which can be directly p
 - MS Excel
 - OfficeSetup.exe*
 
-<span style="color: aqua">* It is recently observed that the MS Office pack does not come loaded with the required libraries (DLLs). It was installed separately using the executable file [`OfficeSetup.exe`](https://c2rsetup.officeapps.live.com/c2r/download.aspx?ProductreleaseID=AccessRuntimeRetail&language=en-us)<br>
+
+> *It is recently observed that the MS Office pack does not come loaded with the required libraries (DLLs). It was installed separately using the executable file [`OfficeSetup.exe`](https://c2rsetup.officeapps.live.com/c2r/download.aspx?ProductreleaseID=AccessRuntimeRetail&language=en-us)
 OS Architecture (32 bit \ 64 bit) plays an important role in installation of both MS pack and the DLLs and you will need a MS Account to download.
-</span>
 
 
 ## Code Setup
@@ -116,7 +116,7 @@ OS Architecture (32 bit \ 64 bit) plays an important role in installation of bot
 <span style="color: aqua">Note that the `Provider=...` connection string can change with the change in MS Office version. The current setting is compatible with MS Office 365</span>
 
 <b><i>Step 4:</b></i> In the `Module`, along with other functions add the below code with SQL queries to be called from the front-end
-```
+
 
 <code>
 
